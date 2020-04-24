@@ -12,7 +12,7 @@ type Packet struct {
 	Buffer bytes.Buffer
 }
 
-// Most messages have two fileds, this covers that common case
+// Most messages have two fields, this covers that common case to a []string.
 func (p *Packet) readMessage() ([]string, error) {
 	a, err := p.Buffer.ReadString(1)
 	if err != nil {
