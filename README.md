@@ -1,4 +1,4 @@
-
+```
 package icb // import "suah.dev/icb"
 
 
@@ -47,4 +47,4 @@ func (p *Packet) Encode(params []string) error
 
 func (p *Packet) Send(c net.Conn) error
     Send takes a connection and sends the ICB packet over it.
-
+```
