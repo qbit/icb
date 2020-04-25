@@ -2,6 +2,8 @@ package main
 
 import (
 	"bufio"
+	"flag"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -11,7 +13,15 @@ import (
 
 func main() {
 	var c icb.Client
-	err := c.Connect("127.0.0.1:7326")
+
+	var server = flag.String("server", "fake", "server to connect to")
+	var port = flag.Int("port", 7326, "port")
+	var nick = flag.String("nick", "dummie", "nick name to use")
+	var group = flag.String("group", "suah", "group to join")
+
+	flag.Parse()
+
+	err := c.Connect(fmt.Sprintf("%s:%d", *server, *port))
 	if err != nil {
 		log.Fatal("dial", err)
 	}
@@ -37,7 +47,7 @@ func main() {
 		}
 	}()
 
-	c.Write([]string{"a", "q", "q", "snakes", "login"})
+	c.Write([]string{"a", *nick, *nick, *group, "login"})
 	if err != nil {
 		log.Fatal(err)
 	}
